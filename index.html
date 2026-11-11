@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppkrit Karawa — Information Technology Student</title>
+  <meta name="description" content="Portfolio of Suppkrit Karawa (Beam), an Information Technology student at Nakhon Si Thammarat Vocational College, Thailand. Computer systems, hardware and software development.">
+  <meta name="author" content="Suppkrit Karawa">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Suppkrit Karawa — Information Technology Student">
+  <meta property="og:description" content="IT student interested in computer systems, hardware and software development.">
+
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: Inter (UI) + JetBrains Mono / Fira Code (terminal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="logo" href="#home" aria-label="beam.dev — back to top">
+        beam<span class="logo-accent">.dev</span><span class="logo-cursor" aria-hidden="true"></span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a class="nav-link is-active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#education">Education</a></li>
+          <li><a class="nav-link" href="#skills">Skills</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#interests">Interests</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <p class="status-pill status-pill--header" title="Site is running">
+        <span class="status-dot" aria-hidden="true"></span>
+        SYSTEM ONLINE
+      </p>
+
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" id="home">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-inner">
+
+        <!-- Left: intro -->
+        <div class="hero-copy">
+          <p class="eyebrow reveal">
+            <span class="eyebrow-mark" aria-hidden="true">&gt;</span> HELLO WORLD! I'M
+          </p>
+
+          <h1 class="hero-title reveal" data-reveal-delay="1">
+            Suppkrit <span class="text-gradient">Karawa</span>
+          </h1>
+
+          <p class="hero-subtitle reveal" data-reveal-delay="2">
+            Information Technology Student
+            <span class="hero-subtitle-sep" aria-hidden="true">/</span>
+            Aspiring Developer
+          </p>
+
+          <p class="hero-desc reveal" data-reveal-delay="3">
+            I'm Beam, an IT student interested in computer systems, technology, and software
+            development. I enjoy exploring new technologies, learning how things work, and
+            reading books.
+          </p>
+
+          <div class="hero-actions reveal" data-reveal-delay="4">
+            <a class="btn btn-primary" href="#projects">
+              <span aria-hidden="true">$</span> View Projects
+            </a>
+            <a class="btn btn-ghost" href="#contact">
+              <span aria-hidden="true">&gt;_</span> Contact Me
+            </a>
+          </div>
+
+          <ul class="hero-meta reveal" data-reveal-delay="5">
+            <li><span class="hero-meta-key">location</span> Nakhon Si Thammarat, TH</li>
+            <li><span class="hero-meta-key">focus</span> Systems &amp; Software</li>
+          </ul>
+        </div>
+
+        <!-- Right: terminal window -->
+        <div class="hero-terminal reveal" data-reveal-delay="3">
+          <div class="terminal" role="img"
+               aria-label="Terminal window showing whoami, role, interests and status output for Suppkrit Karawa">
+            <div class="terminal-bar">
+              <span class="terminal-dots" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </span>
+              <span class="terminal-title">beam@portfolio: ~</span>
+              <span class="terminal-badge" aria-hidden="true">zsh</span>
+            </div>
+
+            <div class="terminal-body" id="terminalBody">
+              <!-- Static fallback content: JavaScript replays this as a typing animation -->
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">whoami</span></p>
+              <p class="term-line term-out">Suppkrit Karawa</p>
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">role</span></p>
+              <p class="term-line term-out">Information Technology Student</p>
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">interests</span></p>
+              <p class="term-line term-out">Computer Systems, Technology, Books</p>
+              <p class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">status</span></p>
+              <p class="term-line term-out">Learning &amp; Building...</p>
+              <p class="term-line term-idle">
+                <span class="term-prompt">$</span>
+                <span class="terminal-cursor" aria-hidden="true"></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="floating-chip floating-chip--top" aria-hidden="true">
+            <span class="floating-chip-dot"></span> info.technology
+          </div>
+          <div class="floating-chip floating-chip--bottom" aria-hidden="true">
+            &lt;/&gt; vanilla stack
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         01 / ABOUT ME
+         ============================================================ -->
+    <section class="section" id="about">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-label"><span>01</span> / ABOUT ME</p>
+          <h2 class="section-title">Who Am I?</h2>
+        </header>
+
+        <div class="about-grid">
+          <!-- Profile card -->
+          <aside class="profile-card reveal" data-reveal-delay="1">
+            <div class="profile-frame">
+              <!-- Drop your photo at assets/images/profile.jpg to replace the placeholder -->
+              <img class="profile-photo" src="assets/images/profile.jpg"
+                   alt="Portrait of Suppkrit Karawa"
+                   onerror="this.closest('.profile-frame').classList.add('is-placeholder')">
+              <div class="profile-placeholder" aria-hidden="true">
+                <span class="profile-initials">SK</span>
+                <span class="profile-placeholder-hint">// assets/images/profile.jpg</span>
+              </div>
+            </div>
+
+            <div class="profile-body">
+              <p class="profile-name">Suppkrit Karawa</p>
+              <p class="profile-role">aka <span class="text-primary">Beam</span></p>
+              <ul class="profile-facts">
+                <li><span>username</span> beam</li>
+                <li><span>role</span> IT Student</li>
+                <li><span>status</span> <em class="text-primary">available</em></li>
+              </ul>
+            </div>
+          </aside>
+
+          <!-- Bio -->
+          <div class="about-copy reveal" data-reveal-delay="2">
+            <p class="about-lead">
+              Hello! My name is <strong>Suppkrit Karawa</strong>, but you can call me
+              <strong class="text-primary">Beam</strong>.
+            </p>
+            <p>
+              I'm currently studying Information Technology at
+              <strong>Nakhon Si Thammarat Vocational College</strong>.
+            </p>
+            <p>
+              I'm interested in computer systems, hardware, technology, and software
+              development. I enjoy learning how computers work and exploring new technical
+              knowledge.
+            </p>
+            <p>
+              Outside technology, I also enjoy reading books, especially topics related to
+              critical thinking, psychology, mystery, and personal development.
+            </p>
+
+            <div class="about-card">
+              <p class="about-card-label">// quick_facts</p>
+              <ul class="about-facts">
+                <li>
+                  <span class="about-fact-key">department</span>
+                  <span class="about-fact-value">Information Technology</span>
+                </li>
+                <li>
+                  <span class="about-fact-key">college</span>
+                  <span class="about-fact-value">Nakhon Si Thammarat Vocational College</span>
+                </li>
+                <li>
+                  <span class="about-fact-key">country</span>
+                  <span class="about-fact-value">Thailand</span>
+                </li>
+                <li>
+                  <span class="about-fact-key">mindset</span>
+                  <span class="about-fact-value">Learn → Build → Improve</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 / EDUCATION
+         ============================================================ -->
+    <section class="section section--surface" id="education">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-label"><span>02</span> / EDUCATION</p>
+          <h2 class="section-title">My Education</h2>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline-item reveal" data-reveal-delay="1">
+            <span class="timeline-node" aria-hidden="true"></span>
+
+            <article class="edu-card">
+              <div class="edu-top">
+                <p class="edu-period">
+                  <span class="edu-dot" aria-hidden="true"></span> present
+                </p>
+                <span class="edu-tag">diploma</span>
+              </div>
+
+              <h3 class="edu-school">Nakhon Si Thammarat Vocational College</h3>
+
+              <p class="edu-department">
+                <span class="edu-key">Department</span> Information Technology
+              </p>
+
+              <p class="edu-location">
+                <span class="edu-key">Location</span> Nakhon Si Thammarat, Thailand
+              </p>
+
+              <p class="edu-note">
+                Studying the fundamentals of computer systems, programming, hardware and
+                networking — building a foundation for a career in software development.
+              </p>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 / TECH STACK
+         ============================================================ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-label"><span>03</span> / TECH STACK</p>
+          <h2 class="section-title">Technologies &amp; Tools</h2>
+          <p class="section-intro">
+            The languages and tools I use while studying and building.
+          </p>
+        </header>
+
+        <!--
+          Skill data is intentionally plain markup so it is easy to edit.
+          Add a new <li> with an icon class + label to extend a category,
+          or copy a whole <article class="skill-card"> for a new category.
+        -->
+        <div class="skills-grid">
+
+          <article class="skill-card reveal" data-reveal-delay="1">
+            <div class="skill-card-head">
+              <span class="skill-card-index">01</span>
+              <h3 class="skill-card-title">Frontend</h3>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="ti ti-html5" aria-hidden="true"></span> HTML</li>
+              <li class="skill-item"><span class="ti ti-css3" aria-hidden="true"></span> CSS</li>
+              <li class="skill-item"><span class="ti ti-javascript" aria-hidden="true"></span> JavaScript</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" data-reveal-delay="2">
+            <div class="skill-card-head">
+              <span class="skill-card-index">02</span>
+              <h3 class="skill-card-title">Programming</h3>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="ti ti-c" aria-hidden="true"></span> C</li>
+              <li class="skill-item"><span class="ti ti-java" aria-hidden="true"></span> Java</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" data-reveal-delay="3">
+            <div class="skill-card-head">
+              <span class="skill-card-index">03</span>
+              <h3 class="skill-card-title">Tools</h3>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="ti ti-vscode" aria-hidden="true"></span> VS Code</li>
+              <li class="skill-item"><span class="ti ti-git" aria-hidden="true"></span> Git</li>
+              <li class="skill-item"><span class="ti ti-github" aria-hidden="true"></span> GitHub</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" data-reveal-delay="4">
+            <div class="skill-card-head">
+              <span class="skill-card-index">04</span>
+              <h3 class="skill-card-title">Operating Systems</h3>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item"><span class="ti ti-windows" aria-hidden="true"></span> Windows</li>
+              <li class="skill-item"><span class="ti ti-linux" aria-hidden="true"></span> Linux</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 / PROJECTS
+         ============================================================ -->
+    <section class="section section--surface" id="projects">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-label"><span>04</span> / PROJECTS</p>
+          <h2 class="section-title">My Projects</h2>
+          <p class="section-intro">Things I have built, and slots ready for what comes next.</p>
+        </header>
+
+        <!--
+          To add a project: copy one <article class="project-card"> below,
+          replace the title, description, tags, links and .project-media label.
+        -->
+        <div class="projects-grid">
+
+          <!-- Project 01 — live -->
+          <article class="project-card reveal" data-reveal-delay="1">
+            <div class="project-media">
+              <span class="project-media-label">portfolio_website</span>
+            </div>
+
+            <div class="project-body">
+              <div class="project-head">
+                <h3 class="project-title">Personal Portfolio Website</h3>
+                <span class="project-status project-status--live">live</span>
+              </div>
+
+              <p class="project-desc">
+                A terminal-inspired personal portfolio built from scratch with semantic HTML,
+                CSS custom properties and vanilla JavaScript — no frameworks, no build step.
+              </p>
+
+              <ul class="project-tags">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+
+              <div class="project-actions">
+                <a class="btn btn-sm btn-primary" href="https://github.com/suppakrit14/suppkrit_profile"
+                   target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn-sm btn-ghost" href="#home">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 02 — placeholder slot -->
+          <article class="project-card is-placeholder reveal" data-reveal-delay="2">
+            <div class="project-media">
+              <span class="project-media-label">project_02</span>
+            </div>
+
+            <div class="project-body">
+              <div class="project-head">
+                <h3 class="project-title">Project Slot Available</h3>
+                <span class="project-status">planned</span>
+              </div>
+
+              <p class="project-desc">
+                Reserved for an upcoming build. Add your project name, description and
+                technology tags here.
+              </p>
+
+              <ul class="project-tags">
+                <li>Tag</li>
+                <li>Tag</li>
+              </ul>
+
+              <div class="project-actions">
+                <a class="btn btn-sm btn-ghost is-disabled" href="#" aria-disabled="true"
+                   tabindex="-1">GitHub</a>
+                <a class="btn btn-sm btn-ghost is-disabled" href="#" aria-disabled="true"
+                   tabindex="-1">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 03 — placeholder slot -->
+          <article class="project-card is-placeholder reveal" data-reveal-delay="3">
+            <div class="project-media">
+              <span class="project-media-label">project_03</span>
+            </div>
+
+            <div class="project-body">
+              <div class="project-head">
+                <h3 class="project-title">Project Slot Available</h3>
+                <span class="project-status">planned</span>
+              </div>
+
+              <p class="project-desc">
+                Reserved for an upcoming build. Add your project name, description and
+                technology tags here.
+              </p>
+
+              <ul class="project-tags">
+                <li>Tag</li>
+                <li>Tag</li>
+              </ul>
+
+              <div class="project-actions">
+                <a class="btn btn-sm btn-ghost is-disabled" href="#" aria-disabled="true"
+                   tabindex="-1">GitHub</a>
+                <a class="btn btn-sm btn-ghost is-disabled" href="#" aria-disabled="true"
+                   tabindex="-1">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 / INTERESTS
+         ============================================================ -->
+    <section class="section" id="interests">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-label"><span>05</span> / INTERESTS</p>
+          <h2 class="section-title">Things I Love</h2>
+        </header>
+
+        <div class="interests-grid">
+
+          <article class="interest-card reveal" data-reveal-delay="1">
+            <span class="interest-glyph" aria-hidden="true">cpu</span>
+            <h3 class="interest-title">Computer Systems</h3>
+            <p class="interest-desc">
+              Exploring computer hardware, operating systems, computer maintenance, and how
+              technology works.
+            </p>
+            <ul class="interest-tags">
+              <li>hardware</li>
+              <li>OS</li>
+              <li>maintenance</li>
+            </ul>
+          </article>
+
+          <article class="interest-card reveal" data-reveal-delay="2">
+            <span class="interest-glyph" aria-hidden="true">book</span>
+            <h3 class="interest-title">Books &amp; Reading</h3>
+            <p class="interest-desc">
+              Exploring ideas through books about critical thinking, psychology, mystery,
+              investigation, and self-development.
+            </p>
+            <ul class="interest-tags">
+              <li>psychology</li>
+              <li>mystery</li>
+              <li>growth</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <!-- Digital bookshelf: labels describe reading themes, not specific titles -->
+        <div class="bookshelf reveal" data-reveal-delay="3">
+          <div class="bookshelf-head">
+            <p class="bookshelf-label">// reading_shelf</p>
+            <p class="bookshelf-hint">themes I keep coming back to</p>
+          </div>
+          <ul class="bookshelf-row">
+            <li class="book-spine"><span>critical-thinking</span></li>
+            <li class="book-spine"><span>psychology</span></li>
+            <li class="book-spine"><span>mystery</span></li>
+            <li class="book-spine"><span>investigation</span></li>
+            <li class="book-spine"><span>self-development</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         06 / CONTACT
+         ============================================================ -->
+    <section class="section section--surface" id="contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <header class="section-head section-head--center reveal">
+            <p class="section-label"><span>06</span> / CONTACT</p>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-intro">
+              Interested in technology, software development, or collaborating on projects?
+              Feel free to connect.
+            </p>
+          </header>
+
+          <div class="contact-links reveal" data-reveal-delay="1">
+            <a class="contact-link" href="https://github.com/suppakrit14" target="_blank" rel="noopener">
+              <span class="ti ti-github contact-icon" aria-hidden="true"></span>
+              <span class="contact-text">
+                <span class="contact-key">GitHub</span>
+                <span class="contact-value">@suppakrit14</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="contact-link" href="mailto:suppkrit14@gmail.com">
+              <span class="contact-icon contact-icon--mono" aria-hidden="true">@</span>
+              <span class="contact-text">
+                <span class="contact-key">Email</span>
+                <span class="contact-value">suppkrit14@gmail.com</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <!-- Replace "#" with your LinkedIn profile URL when available -->
+            <a class="contact-link is-placeholder" href="#" aria-disabled="true">
+              <span class="contact-icon contact-icon--mono" aria-hidden="true">in</span>
+              <span class="contact-text">
+                <span class="contact-key">LinkedIn</span>
+                <span class="contact-value">coming soon</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <a class="btn btn-primary contact-cta reveal" data-reveal-delay="2"
+             href="mailto:suppkrit14@gmail.com">
+            <span aria-hidden="true">$</span> Say Hello
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">beam<span class="logo-accent">.dev</span></p>
+        <p class="footer-credit">Designed &amp; Built by Suppkrit Karawa</p>
+        <p class="footer-stack">Built with HTML, CSS &amp; JavaScript.</p>
+      </div>
+
+      <div class="footer-status">
+        <p class="status-pill status-pill--footer">
+          <span class="status-dot" aria-hidden="true"></span>
+          SYSTEM STATUS: ONLINE
+        </p>
+        <p class="footer-copy">&copy; <span id="year">2026</span> Suppkrit Karawa</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
