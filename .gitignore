@@ -1,0 +1,13 @@
+# Freebuff Desktop project markers
+.freebuff/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
