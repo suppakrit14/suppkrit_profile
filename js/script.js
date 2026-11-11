@@ -1,22 +1,20 @@
 /* ==========================================================================
-   Suppkrit Karawa — Portfolio
-   Vanilla JavaScript. No dependencies, no build step.
+   Suppkrit Karawa — พอร์ตโฟลิโอ (Dashboard layout)
+   Vanilla JavaScript ไม่มี dependency และไม่มีขั้นตอน build
 
-   Modules
-   1.  Mobile navigation
-   2.  Sticky header state
-   3.  Active navigation highlighting
-   4.  Scroll reveal animations
-   5.  Terminal typing animation
-   6.  Footer year
+   1.  Sidebar drawer (มือถือ / แท็บเล็ต)
+   2.  สถานะ top bar ตอนเลื่อนหน้า
+   3.  ไฮไลต์เมนูที่ active + เปลี่ยนหัวข้อ top bar
+   4.  Scroll reveal
+   5.  Typing animation ในเทอร์มินัล
+   6.  ปี พ.ศ. ใน footer
    ========================================================================== */
 
 (function () {
   "use strict";
 
-  /* Shared helpers ---------------------------------------------------------- */
-
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var DRAWER_BREAKPOINT = 1024;
 
   function $(selector, scope) {
     return (scope || document).querySelector(selector);
@@ -26,72 +24,64 @@
     return Array.prototype.slice.call((scope || document).querySelectorAll(selector));
   }
 
-  /* Reads the real header height so anchored sections are not hidden behind it. */
-  function getHeaderHeight() {
-    var header = $("#siteHeader");
-    return header ? header.offsetHeight : 72;
-  }
-
   /* ==========================================================================
-     1. MOBILE NAVIGATION
+     1. SIDEBAR DRAWER
      ========================================================================== */
-  function initMobileNav() {
-    var toggle = $("#navToggle");
-    var nav = $("#primaryNav");
-    if (!toggle || !nav) return;
-
-    function setOpen(open) {
-      nav.classList.toggle("is-open", open);
-      document.body.classList.toggle("nav-open", open);
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    }
+  function initDrawer() {
+    var sidebar = $("#sidebar");
+    var menuBtn = $("#menuBtn");
+    var backdrop = $("#sidebarBackdrop");
+    if (!sidebar || !menuBtn || !backdrop) return;
 
     function isOpen() {
-      return nav.classList.contains("is-open");
+      return sidebar.classList.contains("is-open");
     }
 
-    toggle.addEventListener("click", function () {
+    function setOpen(open) {
+      sidebar.classList.toggle("is-open", open);
+      document.body.classList.toggle("drawer-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "ปิดเมนู" : "เปิดเมนู");
+      backdrop.hidden = !open;
+    }
+
+    menuBtn.addEventListener("click", function () {
       setOpen(!isOpen());
     });
 
-    // Close the panel after choosing a destination
-    $$(".nav-link", nav).forEach(function (link) {
+    backdrop.addEventListener("click", function () {
+      setOpen(false);
+    });
+
+    // เลือกเมนูแล้วปิด drawer
+    $$(".side-link", sidebar).forEach(function (link) {
       link.addEventListener("click", function () {
         if (isOpen()) setOpen(false);
       });
     });
 
-    // Escape closes the menu and returns focus to the toggle
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && isOpen()) {
         setOpen(false);
-        toggle.focus();
+        menuBtn.focus();
       }
     });
 
-    // Clicking outside the panel closes it
-    document.addEventListener("click", function (event) {
-      if (!isOpen()) return;
-      if (nav.contains(event.target) || toggle.contains(event.target)) return;
-      setOpen(false);
-    });
-
-    // Leaving mobile widths resets the panel
+    // กลับสู่จอใหญ่ = ปิด drawer
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 900 && isOpen()) setOpen(false);
+      if (window.innerWidth > DRAWER_BREAKPOINT && isOpen()) setOpen(false);
     });
   }
 
   /* ==========================================================================
-     2. STICKY HEADER STATE
+     2. TOP BAR STATE
      ========================================================================== */
-  function initHeaderState() {
-    var header = $("#siteHeader");
-    if (!header) return;
+  function initTopbarState() {
+    var topbar = $("#topbar");
+    if (!topbar) return;
 
     function update() {
-      header.classList.toggle("is-scrolled", window.scrollY > 8);
+      topbar.classList.toggle("is-scrolled", window.scrollY > 8);
     }
 
     update();
@@ -99,50 +89,65 @@
   }
 
   /* ==========================================================================
-     3. ACTIVE NAVIGATION HIGHLIGHTING
+     3. ACTIVE MENU + TOP BAR TITLE
      ========================================================================== */
-  function initActiveNav() {
-    var links = $$(".nav-link");
+  function initActiveSection() {
+    var links = $$(".side-link");
     if (!links.length) return;
 
-    // Pair each navigation link with the section it points to
+    var title = $("#pageTitle");
+    var sub = $("#pageSub");
+
+    // จับคู่เมนูกับ section ปลายทาง
     var sections = links
       .map(function (link) {
-        var id = link.getAttribute("href");
-        if (!id || id.charAt(0) !== "#") return null;
-        var section = document.getElementById(id.slice(1));
+        var href = link.getAttribute("href");
+        if (!href || href.charAt(0) !== "#") return null;
+        var section = document.getElementById(href.slice(1));
         return section ? { link: link, section: section } : null;
       })
       .filter(Boolean);
 
     if (!sections.length) return;
 
-    function setActive(activeLink) {
-      links.forEach(function (link) {
-        var isActive = link === activeLink;
-        link.classList.toggle("is-active", isActive);
-        if (isActive) {
-          link.setAttribute("aria-current", "true");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-    }
+    var currentLink = null;
 
     function update() {
-      var probe = window.scrollY + getHeaderHeight() + 90;
+      var topbarH = $("#topbar") ? $("#topbar").offsetHeight : 76;
+      var probe = window.scrollY + topbarH + 80;
       var current = sections[0];
 
       sections.forEach(function (entry) {
         if (entry.section.offsetTop <= probe) current = entry;
       });
 
-      // At the very bottom of the page, always highlight the last section
-      var atBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 4;
-      if (atBottom) current = sections[sections.length - 1];
+      // อยู่ล่างสุดของหน้า ให้ไฮไลต์ section สุดท้าย
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 4) {
+        current = sections[sections.length - 1];
+      }
 
-      setActive(current.link);
+      if (current.link === currentLink) return;
+      currentLink = current.link;
+
+      links.forEach(function (link) {
+        var active = link === current.link;
+        link.classList.toggle("is-active", active);
+        if (active) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+
+      // เปลี่ยนหัวข้อ top bar ตาม section ที่เปิดอยู่
+      if (title) {
+        var nextTitle = current.section.getAttribute("data-title");
+        if (nextTitle) title.textContent = nextTitle;
+      }
+      if (sub) {
+        var nextSub = current.section.getAttribute("data-sub");
+        if (nextSub) sub.textContent = nextSub;
+      }
     }
 
     update();
@@ -151,13 +156,12 @@
   }
 
   /* ==========================================================================
-     4. SCROLL REVEAL ANIMATIONS
+     4. SCROLL REVEAL
      ========================================================================== */
   function initScrollReveal() {
     var items = $$(".reveal");
     if (!items.length) return;
 
-    // Without IntersectionObserver (or with reduced motion) show everything
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
       items.forEach(function (item) {
         item.classList.add("is-visible");
@@ -173,7 +177,7 @@
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
 
     items.forEach(function (item) {
@@ -182,27 +186,27 @@
   }
 
   /* ==========================================================================
-     5. TERMINAL TYPING ANIMATION
+     5. TERMINAL TYPING
      ========================================================================== */
   var TERMINAL_SCRIPT = [
     { type: "cmd", text: "whoami" },
     { type: "out", text: "Suppkrit Karawa" },
     { type: "cmd", text: "role" },
-    { type: "out", text: "Information Technology Student" },
+    { type: "out", text: "นักศึกษาเทคโนโลยีสารสนเทศ" },
     { type: "cmd", text: "interests" },
-    { type: "out", text: "Computer Systems, Technology, Books" },
+    { type: "out", text: "ระบบคอมพิวเตอร์, เทคโนโลยี, หนังสือ" },
     { type: "cmd", text: "status" },
-    { type: "out", text: "Learning & Building..." }
+    { type: "out", text: "กำลังเรียนรู้และสร้างผลงาน..." }
   ];
 
   function initTerminal() {
     var body = $("#terminalBody");
     if (!body) return;
 
-    // Reduced motion: keep the static markup already in the HTML
+    // ปิด animation: ใช้ข้อความ static ที่มีอยู่ใน HTML
     if (prefersReducedMotion) return;
 
-    var promptText = "$";
+    var PROMPT = "$";
 
     function sleep(ms) {
       return new Promise(function (resolve) {
@@ -210,13 +214,25 @@
       });
     }
 
-    function createPromptLine() {
+    /* พิมพ์ข้อความลง element ทีละตัวอักษร */
+    function typeInto(element, text) {
+      return new Promise(function (resolve) {
+        var index = 0;
+        (function step() {
+          if (index >= text.length) return resolve();
+          element.textContent += text.charAt(index++);
+          window.setTimeout(step, 45 + Math.random() * 40);
+        })();
+      });
+    }
+
+    function createCommandLine() {
       var line = document.createElement("p");
       line.className = "term-line";
 
       var prompt = document.createElement("span");
       prompt.className = "term-prompt";
-      prompt.textContent = promptText;
+      prompt.textContent = PROMPT;
 
       var command = document.createElement("span");
       command.className = "term-cmd";
@@ -228,28 +244,16 @@
       return { line: line, command: command };
     }
 
-    /* Types a command string into the given element, one character at a time. */
-    function typeCommand(element, text) {
-      return new Promise(function (resolve) {
-        var index = 0;
-        (function step() {
-          if (index >= text.length) return resolve();
-          element.textContent += text.charAt(index++);
-          window.setTimeout(step, 52 + Math.random() * 40);
-        })();
-      });
-    }
-
     function run() {
       var sequence = Promise.resolve();
 
       TERMINAL_SCRIPT.forEach(function (entry) {
         sequence = sequence.then(function () {
           if (entry.type === "cmd") {
-            var parts = createPromptLine();
+            var parts = createCommandLine();
             body.appendChild(parts.line);
-            return typeCommand(parts.command, entry.text).then(function () {
-              return sleep(300);
+            return typeInto(parts.command, entry.text).then(function () {
+              return sleep(280);
             });
           }
 
@@ -257,18 +261,18 @@
           output.className = "term-line term-out";
           output.textContent = entry.text;
           body.appendChild(output);
-          return sleep(240);
+          return sleep(220);
         });
       });
 
-      // Final idle prompt with a blinking cursor
+      // บรรทัดสุดท้ายพร้อมเคอร์เซอร์กระพริบ
       sequence = sequence.then(function () {
         var idle = document.createElement("p");
         idle.className = "term-line term-idle";
 
         var prompt = document.createElement("span");
         prompt.className = "term-prompt";
-        prompt.textContent = promptText;
+        prompt.textContent = PROMPT;
 
         var cursor = document.createElement("span");
         cursor.className = "terminal-cursor";
@@ -283,7 +287,6 @@
       return sequence;
     }
 
-    // Start only once the terminal is in view, and only once.
     var started = false;
     function start() {
       if (started) return;
@@ -302,7 +305,7 @@
             }
           });
         },
-        { threshold: 0.25 }
+        { threshold: 0.2 }
       );
       observer.observe(body);
     } else {
@@ -311,18 +314,18 @@
   }
 
   /* ==========================================================================
-     6. FOOTER YEAR
+     6. FOOTER YEAR (พ.ศ.)
      ========================================================================== */
   function initFooterYear() {
     var year = $("#year");
-    if (year) year.textContent = String(new Date().getFullYear());
+    if (year) year.textContent = String(new Date().getFullYear() + 543);
   }
 
   /* Bootstrap --------------------------------------------------------------- */
   function init() {
-    initMobileNav();
-    initHeaderState();
-    initActiveNav();
+    initDrawer();
+    initTopbarState();
+    initActiveSection();
     initScrollReveal();
     initTerminal();
     initFooterYear();
