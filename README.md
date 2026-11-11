@@ -88,7 +88,8 @@ suppkrit_profile/
 │   │   ├── vscode.svg      # วาดเอง
 │   │   └── gnubash.svg
 │   └── images/
-│       └── .gitkeep        # ใส่ profile.jpg ที่นี่ (ดูหัวข้อการปรับแต่ง)
+│       ├── profile.jpg     # รูปโปรไฟล์ (ถ้าไม่มี จะเป็น placeholder อักษร B)
+│       └── .gitkeep
 └── README.md
 ```
 
